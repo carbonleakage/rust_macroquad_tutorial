@@ -1,0 +1,6 @@
+# macroquad/miniquad resolve gl*, console_log, canvas_*, etc. from the JS
+# shim (mq_js_bundle.js) at runtime in the browser. Rust >= 1.96 makes
+# wasm-ld treat undefined symbols as hard link errors, so we must tell the
+# linker to import them instead of failing.
+[target.wasm32-unknown-unknown]
+rustflags = ["-C", "link-arg=--allow-undefined"]
